@@ -6,7 +6,7 @@ export default class UsersController {
 
   // Exibir o formulário de criação
   // Nao usaremos pois quem vai fazer isso é o front
-  public async create({}: HttpContextContract) {}
+  // public async create({}: HttpContextContract) {}
 
   // Processar a criação de um novo com base nos dados do form
   public async store({}: HttpContextContract) {}
@@ -16,7 +16,7 @@ export default class UsersController {
 
   // Exibe o form de edição de um item existente
   // Nao usaremos pois quem vai fazer isso é o front
-  public async edit({}: HttpContextContract) {}
+  // public async edit({}: HttpContextContract) {}
 
   // Processa os dados do form de edição
   public async update({}: HttpContextContract) {}
