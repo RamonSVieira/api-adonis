@@ -25,8 +25,10 @@ export default class UsersController {
   }
 
   // Exibir detalhes de um item específico
-  public async show({}: HttpContextContract) {
-    return 'show'
+  public async show({request}: HttpContextContract) {
+    const userId = request.param('id')
+    const user = await User.findOrFail(userId)
+    return user
   }
 
   // Exibe o form de edição de um item existente
@@ -34,12 +36,22 @@ export default class UsersController {
   // public async edit({}: HttpContextContract) {}
 
   // Processa os dados do form de edição
-  public async update({}: HttpContextContract) {
-    return 'update'
+  public async update({request}: HttpContextContract) {
+    const userId = request.param('id')
+    const body = request.only(['name', 'email', 'password'])
+    const user = await User.findOrFail(userId)
+
+    // Realiza o merge, ou seja apenas atualiza os campos informados
+    await user.merge(body).save()
+
+    return user
   }
 
   // Exclui um item existente
-  public async destroy({}: HttpContextContract) {
-    return 'destroy'
+  public async destroy({request}: HttpContextContract) {
+    const userId = request.param('id')
+    const user = await User.findOrFail(userId)
+    await user.delete()
+    return true
   }
 }
